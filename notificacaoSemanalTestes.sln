@@ -1,0 +1,29 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.32510.428
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "notificacaoSemanalTestes", "destacamentoNotification\notificacaoSemanalTestes.csproj", "{21BB5EA6-0206-44A6-A63A-FC377F2B029C}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Setup", "Setup\Setup.vdproj", "{95C7C32B-564C-4041-B5CC-77036FFF6628}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{21BB5EA6-0206-44A6-A63A-FC377F2B029C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{21BB5EA6-0206-44A6-A63A-FC377F2B029C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{21BB5EA6-0206-44A6-A63A-FC377F2B029C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{21BB5EA6-0206-44A6-A63A-FC377F2B029C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{95C7C32B-564C-4041-B5CC-77036FFF6628}.Debug|Any CPU.ActiveCfg = Debug
+		{95C7C32B-564C-4041-B5CC-77036FFF6628}.Release|Any CPU.ActiveCfg = Release
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E33FC98E-FCBF-48D7-9F32-08FF8A0680A1}
+	EndGlobalSection
+EndGlobal
