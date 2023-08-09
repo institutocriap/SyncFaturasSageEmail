@@ -15,18 +15,6 @@
     {
         "Entry"
         {
-        "MsmKey" = "8:_0600D0D67015F8CF841259242EA35459"
-        "OwnerKey" = "8:_7E52D21649854CFD2B2E2212685E295B"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_0600D0D67015F8CF841259242EA35459"
-        "OwnerKey" = "8:_9B4DD14BA0C04E888E56A5AEE53A05A2"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_177F9DD3A906A3997DD99610D90A3E8F"
         "OwnerKey" = "8:_9B4DD14BA0C04E888E56A5AEE53A05A2"
         "MsmSig" = "8:_UNDEFINED"
@@ -34,7 +22,7 @@
         "Entry"
         {
         "MsmKey" = "8:_177F9DD3A906A3997DD99610D90A3E8F"
-        "OwnerKey" = "8:_90F7AE28FB1497B4A0E32D9F3512AF50"
+        "OwnerKey" = "8:_F3147A1EFC362CD524B8342CBA026017"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -46,7 +34,7 @@
         "Entry"
         {
         "MsmKey" = "8:_2D3069FE7CD25E8602A4AE59B2AA543A"
-        "OwnerKey" = "8:_90F7AE28FB1497B4A0E32D9F3512AF50"
+        "OwnerKey" = "8:_F3147A1EFC362CD524B8342CBA026017"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -64,7 +52,7 @@
         "Entry"
         {
         "MsmKey" = "8:_471DC98BC2E50F42933A4EB35305F3DA"
-        "OwnerKey" = "8:_90F7AE28FB1497B4A0E32D9F3512AF50"
+        "OwnerKey" = "8:_F3147A1EFC362CD524B8342CBA026017"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -81,13 +69,7 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_7E52D21649854CFD2B2E2212685E295B"
-        "OwnerKey" = "8:_9B4DD14BA0C04E888E56A5AEE53A05A2"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_90F7AE28FB1497B4A0E32D9F3512AF50"
+        "MsmKey" = "8:_7923B814838B43375B1D1F13612C507E"
         "OwnerKey" = "8:_9B4DD14BA0C04E888E56A5AEE53A05A2"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -100,13 +82,25 @@
         "Entry"
         {
         "MsmKey" = "8:_9895B72754BA3480375304E1F0DF52FE"
-        "OwnerKey" = "8:_90F7AE28FB1497B4A0E32D9F3512AF50"
+        "OwnerKey" = "8:_F3147A1EFC362CD524B8342CBA026017"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_9B4DD14BA0C04E888E56A5AEE53A05A2"
         "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_9CCB18457FD2010784A330F532258DA2"
+        "OwnerKey" = "8:_7923B814838B43375B1D1F13612C507E"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_9CCB18457FD2010784A330F532258DA2"
+        "OwnerKey" = "8:_9B4DD14BA0C04E888E56A5AEE53A05A2"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -124,37 +118,19 @@
         "Entry"
         {
         "MsmKey" = "8:_A9CF52010D5789FF7C959CF3BD1410AA"
-        "OwnerKey" = "8:_90F7AE28FB1497B4A0E32D9F3512AF50"
+        "OwnerKey" = "8:_F3147A1EFC362CD524B8342CBA026017"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_90F7AE28FB1497B4A0E32D9F3512AF50"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_0600D0D67015F8CF841259242EA35459"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_7E52D21649854CFD2B2E2212685E295B"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
+        "MsmKey" = "8:_F3147A1EFC362CD524B8342CBA026017"
         "OwnerKey" = "8:_9B4DD14BA0C04E888E56A5AEE53A05A2"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_177F9DD3A906A3997DD99610D90A3E8F"
+        "OwnerKey" = "8:_471DC98BC2E50F42933A4EB35305F3DA"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -172,7 +148,31 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_471DC98BC2E50F42933A4EB35305F3DA"
+        "OwnerKey" = "8:_177F9DD3A906A3997DD99610D90A3E8F"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_9B4DD14BA0C04E888E56A5AEE53A05A2"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_F3147A1EFC362CD524B8342CBA026017"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_7923B814838B43375B1D1F13612C507E"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_9CCB18457FD2010784A330F532258DA2"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -282,37 +282,6 @@
         }
         "File"
         {
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_0600D0D67015F8CF841259242EA35459"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:criapQuerys, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_0600D0D67015F8CF841259242EA35459"
-                    {
-                    "Name" = "8:criapQuerys.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:criapQuerys.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_E6F65E989F784EC59F6414A792744265"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_177F9DD3A906A3997DD99610D90A3E8F"
             {
             "AssemblyRegister" = "3:1"
@@ -406,51 +375,20 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_7E52D21649854CFD2B2E2212685E295B"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_7923B814838B43375B1D1F13612C507E"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
             "AssemblyAsmDisplayName" = "8:criapLibrary, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_7E52D21649854CFD2B2E2212685E295B"
+                    "_7923B814838B43375B1D1F13612C507E"
                     {
                     "Name" = "8:criapLibrary.dll"
                     "Attributes" = "3:512"
                     }
                 }
             "SourcePath" = "8:criapLibrary.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_E6F65E989F784EC59F6414A792744265"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_90F7AE28FB1497B4A0E32D9F3512AF50"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Vodafone.SMSbyMail, Version=1.0.2.0, Culture=neutral, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_90F7AE28FB1497B4A0E32D9F3512AF50"
-                    {
-                    "Name" = "8:Vodafone.SMSbyMail.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:Vodafone.SMSbyMail.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_E6F65E989F784EC59F6414A792744265"
@@ -482,6 +420,37 @@
                     }
                 }
             "SourcePath" = "8:stdole.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_E6F65E989F784EC59F6414A792744265"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_9CCB18457FD2010784A330F532258DA2"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:criapQuerys, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_9CCB18457FD2010784A330F532258DA2"
+                    {
+                    "Name" = "8:criapQuerys.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:criapQuerys.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_E6F65E989F784EC59F6414A792744265"
@@ -561,6 +530,37 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_F3147A1EFC362CD524B8342CBA026017"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:Vodafone.SMSbyMail, Version=1.0.2.0, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_F3147A1EFC362CD524B8342CBA026017"
+                    {
+                    "Name" = "8:Vodafone.SMSbyMail.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:Vodafone.SMSbyMail.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_E6F65E989F784EC59F6414A792744265"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
         }
         "FileType"
         {
@@ -617,15 +617,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:notificacaoInternaTestes"
-        "ProductCode" = "8:{34E0329E-9027-42C4-8A19-D9009FCCE34C}"
-        "PackageCode" = "8:{4CEA2E7E-6D50-414D-A689-8A543B76C513}"
+        "ProductCode" = "8:{983BF430-A23D-4745-B7E7-BFCC7B561930}"
+        "PackageCode" = "8:{FA218255-38E6-464C-8CA1-0740E064E406}"
         "UpgradeCode" = "8:{A3059310-0831-4F97-9C02-AE925813A497}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:2.0.0"
+        "ProductVersion" = "8:2.0.1"
         "Manufacturer" = "8:Instituto CRIAP"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
@@ -1139,7 +1139,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_9B4DD14BA0C04E888E56A5AEE53A05A2"
             {
-            "SourcePath" = "8:\\\\192.168.1.211\\Documentos\\criapgeral\\CriapFPApps\\CRIAP Notificações\\Internas\\notificacaoSemanalTestes\\notificacaoSemanalTestes\\destacamentoNotification\\obj\\Debug\\notificacaoSemanalTestes.exe"
+            "SourcePath" = "8:..\\destacamentoNotification\\obj\\Debug\\notificacaoSemanalTestes.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_E6F65E989F784EC59F6414A792744265"

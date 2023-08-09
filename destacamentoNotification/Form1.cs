@@ -48,10 +48,11 @@ namespace notificacaoSemanalTestes
                 }
                 else
                 {
-                    quarta1 = DateTime.Parse("2023-04-26");
-                    quarta2 = DateTime.Parse("2023-05-03");
+                    hoje = DateTime.Parse("2023-09-25");
+                    quarta1 = DateTime.Parse("2023-09-27");
+                    quarta2 = DateTime.Parse("2023-10-04");
                 }
-                string subQuery = "SELECT cav.codigo_curso, cav.RefAcao, cav.momentoav, cav.Metodologia, cav.moduloID, cast(cav.DataI_EN as date) as 'DataI_EN', cast(cav.Dataf_EN as date) as 'DataF_En' FROM CalendarioAV cav inner join humantrain.dbo.TBForCursos c on c.Codigo_Curso = cav.codigo_curso inner join humantrain.dbo.TBForModulos m on m.versao_rowid = cav.ModuloID inner join humantrain.dbo.TBForAccoes a on a.Ref_Accao = RefAcao where Metodologia not like '%atividade%' and DataI_EN >= '" + quarta1.ToString("yyyy-MM-dd") + " 00:00:00' and DAtaI_EN <= '" + quarta2.ToString("yyyy-MM-dd") + " 23:59:59' group by cav.RefAcao, cav.MomentoAv, cav.Metodologia, cav.DataI_EN, cav.DataF_EN, cav.moduloid, cav.Codigo_Curso order by DataI_EN asc";
+                string subQuery = "SELECT cav.codigo_curso, cav.RefAcao, cav.momentoav, cav.Metodologia, cav.moduloID, cast(cav.DataI_EN as date) as 'DataI_EN', cast(cav.Dataf_EN as date) as 'DataF_En' FROM CalendarioAV cav inner join humantrain.dbo.TBForCursos c on c.Codigo_Curso = cav.codigo_curso inner join humantrain.dbo.TBForModulos m on m.versao_rowid = cav.ModuloID inner join humantrain.dbo.TBForAccoes a on a.Ref_Accao = RefAcao where Metodologia not like '%atividade%' and DataI_EN >= '" + quarta1.ToString("yyyy-MM-dd") + " 00:00:00' and DAtaI_EN <= '" + quarta2.ToString("yyyy-MM-dd") + " 00:00:00' and a.Codigo_Estado = 1 group by cav.RefAcao, cav.MomentoAv, cav.Metodologia, cav.DataI_EN, cav.DataF_EN, cav.moduloid, cav.Codigo_Curso order by DataI_EN asc";
                 
 
                 Connect.SVlocalConnect.ConnInit();
@@ -122,7 +123,7 @@ namespace notificacaoSemanalTestes
                 }
 
 
-                string subQuery2 = "SELECT a.Ref_Accao, a.Data_Fim, c.Tipo_Curso, cpa.PARAM_AVAL, cpa.DESCRICAO from TBForAccoes a inner join TBForCursos c on a.Codigo_Curso = c.Codigo_Curso inner join TBForCursosParamsAvalQtva cpa on c.Codigo_Curso = cpa.Codigo_Curso where a.Ref_Accao is not null and c.Tipo_Curso = '2' and a.Data_Fim between dateadd(day, -14, GETDATE()) and GETDATE() and Momento_Aval = 1 and Nivel_Modulo = 0 order by a.Data_Fim asc";
+                string subQuery2 = "SELECT a.Ref_Accao, a.Data_Fim, c.Tipo_Curso, cpa.PARAM_AVAL, cpa.DESCRICAO from TBForAccoes a inner join TBForCursos c on a.Codigo_Curso = c.Codigo_Curso inner join TBForCursosParamsAvalQtva cpa on c.Codigo_Curso = cpa.Codigo_Curso left join [secretariaVirtual].[dbo].[CalendarioAV] cav on a.Ref_Accao=cav.RefAcao where a.Ref_Accao is not null and c.Tipo_Curso = '2' and a.Data_Fim between dateadd(day, -14, '" + hoje.ToString("yyyy-MM-dd") + "') and '"+hoje.ToString("yyyy-MM-dd") + "' and Momento_Aval = 1 and Nivel_Modulo = 0 and a.Codigo_Estado=1 and cav.RefAcao is null order by a.Data_Fim asc";
 
                 Connect.HTlocalConnect.ConnInit();
                 SqlDataAdapter adapter2 = new SqlDataAdapter(subQuery2, Connect.HTlocalConnect.Conn);
