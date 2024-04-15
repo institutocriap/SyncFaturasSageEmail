@@ -126,8 +126,9 @@ namespace notificacaoSemanalTestes
                     Connect.HTlocalConnect.ConnEnd();
                     if (subDtecass.Rows.Count > 0)
                     {
-                        tecnRespon = subDtecass.Rows[0]["TecResp"].ToString();                        
-                        TecnAssis = subDtecass.Rows[0]["TecAssist"]?.ToString() == "" ? "n/a" : subDtecass.Rows[0]["TecAssist"].ToString() ?? "n/a";
+                            tecnRespon = subDtecass.Rows[0]["TecResp"]?.ToString() ?? "n/a";
+
+                            TecnAssis = subDtecass.Rows[0]["TecAssist"]?.ToString() == "" ? "n/a" : subDtecass.Rows[0]["TecAssist"].ToString() ?? "n/a";
 
                         }
                         //else continue;
@@ -180,7 +181,7 @@ namespace notificacaoSemanalTestes
                             Connect.HTlocalConnect.ConnEnd();
                             if (subDtecass.Rows.Count > 0)
                             {
-                                tecnRespon = subDtecass.Rows[0]["TecResp"].ToString();
+                                tecnRespon = subDtecass.Rows[0]["TecResp"]?.ToString()??"n/a";
                                 TecnAssis = subDtecass.Rows[0]["TecAssist"]?.ToString() == "" ? "n/a" : subDtecass.Rows[0]["TecAssist"].ToString() ?? "n/a";
 
                                 }
