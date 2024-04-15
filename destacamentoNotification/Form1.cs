@@ -28,7 +28,7 @@ namespace notificacaoSemanalTestes
         }
         public Form1()
         {
-            teste = true;
+            teste = false;
             InitializeComponent();
             Security.remote();
             controloVersao = @"<br><font size=""-2"">Controlo de versão: " + " V." + v.Major.ToString() + "." + v.Minor.ToString() + "." + v.Build.ToString() + " Assembly built date: " + System.IO.File.GetLastWriteTime(Assembly.GetExecutingAssembly().Location) + " by sa";
