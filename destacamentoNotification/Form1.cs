@@ -28,7 +28,7 @@ namespace notificacaoSemanalTestes
         }
         public Form1()
         {
-            teste = false;
+            teste = true;
             InitializeComponent();
             Security.remote();
             controloVersao = @"<br><font size=""-2"">Controlo de versão: " + " V." + v.Major.ToString() + "." + v.Minor.ToString() + "." + v.Build.ToString() + " Assembly built date: " + System.IO.File.GetLastWriteTime(Assembly.GetExecutingAssembly().Location) + " by sa";
@@ -118,7 +118,7 @@ namespace notificacaoSemanalTestes
                             modulosText = "Sem descrição";
                         }
 
-                    string strtecnAss = "SELECT sy.Nome as 'TecResp', sy.Login, sx.Nome as 'TecAssist' FROM TBForAccoes a inner join TBSysUsers sy on a.Cod_Tecn_Resp = sy.Login inner join TBSysUsers sx on a.Cod_Tecn_Assist = sx.Login where Ref_Accao ='" + refacao + "'";
+                    string strtecnAss = "SELECT sy.Nome as 'TecResp', sy.Login, sx.Nome as 'TecAssist' FROM TBForAccoes a left join TBSysUsers sy on a.Cod_Tecn_Resp = sy.Login left join TBSysUsers sx on a.Cod_Tecn_Assist = sx.Login where Ref_Accao ='" + refacao + "'";
                     Connect.HTlocalConnect.ConnInit();
                     SqlDataAdapter adptrtecass = new SqlDataAdapter(strtecnAss, Connect.HTlocalConnect.Conn);
                     DataTable subDtecass = new DataTable();
@@ -126,12 +126,13 @@ namespace notificacaoSemanalTestes
                     Connect.HTlocalConnect.ConnEnd();
                     if (subDtecass.Rows.Count > 0)
                     {
-                        tecnRespon = subDtecass.Rows[0]["TecResp"].ToString();
-                        TecnAssis = subDtecass.Rows[0]["TecAssist"].ToString();
-                    }
-                    //else continue;
+                        tecnRespon = subDtecass.Rows[0]["TecResp"].ToString();                        
+                        TecnAssis = subDtecass.Rows[0]["TecAssist"]?.ToString() == "" ? "n/a" : subDtecass.Rows[0]["TecAssist"].ToString() ?? "n/a";
 
-                    listaAcooes += " <tr style='font-size: 13px; background-color: white'> " + " <td align=center> " + refacao + "</td> <td align=center> " + tecnRespon + "</td> <td align=center> " + TecnAssis + "</td> <td align=center> " + momAv + "</td> <td align=center> " + modulosText + "</td> <td align=center> " + metodologia + "</td> <td align=center> " + dt1 + "</td> <td align=center> " + dt2 + "</td>";
+                        }
+                        //else continue;
+
+                        listaAcooes += " <tr style='font-size: 13px; background-color: white'> " + " <td align=center> " + refacao + "</td> <td align=center> " + tecnRespon + "</td> <td align=center> " + TecnAssis + "</td> <td align=center> " + momAv + "</td> <td align=center> " + modulosText + "</td> <td align=center> " + metodologia + "</td> <td align=center> " + dt1 + "</td> <td align=center> " + dt2 + "</td>";
                 }
             }
 
@@ -171,7 +172,7 @@ namespace notificacaoSemanalTestes
                             string tecnRespon = "", TecnAssis = "";
 
                             string metodologia = row["DESCRICAO"].ToString();
-                            string strtecnAss = "SELECT sy.Nome as 'TecResp', sy.Login, sx.Nome as 'TecAssist' FROM TBForAccoes a inner join TBSysUsers sy on a.Cod_Tecn_Resp = sy.Login inner join TBSysUsers sx on a.Cod_Tecn_Assist = sx.Login where Ref_Accao ='" + refacao + "'";
+                            string strtecnAss = "SELECT sy.Nome as 'TecResp', sy.Login, sx.Nome as 'TecAssist' FROM TBForAccoes a left join TBSysUsers sy on a.Cod_Tecn_Resp = sy.Login left join TBSysUsers sx on a.Cod_Tecn_Assist = sx.Login where Ref_Accao ='" + refacao + "'";
                             Connect.HTlocalConnect.ConnInit();
                             SqlDataAdapter adptrtecass = new SqlDataAdapter(strtecnAss, Connect.HTlocalConnect.Conn);
                             DataTable subDtecass = new DataTable();
@@ -180,9 +181,10 @@ namespace notificacaoSemanalTestes
                             if (subDtecass.Rows.Count > 0)
                             {
                                 tecnRespon = subDtecass.Rows[0]["TecResp"].ToString();
-                                TecnAssis = subDtecass.Rows[0]["TecAssist"].ToString();
-                            }
-                            else continue;
+                                TecnAssis = subDtecass.Rows[0]["TecAssist"]?.ToString() == "" ? "n/a" : subDtecass.Rows[0]["TecAssist"].ToString() ?? "n/a";
+
+                                }
+                                else continue;
 
                             listaAcooes += " <tr style='font-size: 13px; background-color: white'> " +
                             " <td align=center> " + refacao
