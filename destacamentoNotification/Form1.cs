@@ -28,7 +28,7 @@ namespace notificacaoSemanalTestes
         }
         public Form1()
         {
-            teste = false;
+            teste = true;
             InitializeComponent();
             Security.remote();
             controloVersao = @"<br><font size=""-2"">Controlo de versão: " + " V." + v.Major.ToString() + "." + v.Minor.ToString() + "." + v.Build.ToString() + " Assembly built date: " + System.IO.File.GetLastWriteTime(Assembly.GetExecutingAssembly().Location) + " by sa";
@@ -48,8 +48,8 @@ namespace notificacaoSemanalTestes
             }
             else
             {
-                hoje = DateTime.Now;
-                //hoje = DateTime.Parse("2023-09-25");
+                //hoje = DateTime.Now;
+               hoje = DateTime.Parse("2024-06-10");
                 //quarta1 = DateTime.Parse("2023-09-27");
                 //quarta2 = DateTime.Parse("2023-10-04");
                 quarta1 = hoje.AddDays(2);
