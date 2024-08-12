@@ -7,7 +7,7 @@ using System.Windows.Forms;
 using System.Data.SqlClient;
 using System.Net.Mail;
 using System.Net;
-using notificacaoSemanalTestes.Connects;
+using SyncFaturasSageEmail.Connects;
 using System.Linq;
 using System.Reflection;
 using MailKit.Net.Imap;
@@ -17,7 +17,7 @@ using MailKit;
 using System.IO;
 using System.Text.RegularExpressions;
 
-namespace notificacaoSemanalTestes
+namespace SyncFaturasSageEmail
 {
     public partial class Form1 : Form
     {
@@ -109,7 +109,7 @@ namespace notificacaoSemanalTestes
                 mimePart.Content.DecodeTo(memoriaStream);
                 byte[] conteudoArquivo = memoriaStream.ToArray();
 
-                string selectQuery = @"SELECT ssCOUNT(*) FROM TBForDocFaturas WHERE nome_arquivo = @nome_arquivo";
+                string selectQuery = @"SELECT COUNT(*) FROM TBForDocFaturas WHERE nome_arquivo = @nome_arquivo";
 
                 Connect.SVlocalConnect.ConnInit();
                 using (SqlCommand selectCommand = new SqlCommand(selectQuery, Connect.SVlocalConnect.Conn))

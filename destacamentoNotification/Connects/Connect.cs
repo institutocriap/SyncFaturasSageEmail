@@ -1,4 +1,4 @@
-﻿namespace notificacaoSemanalTestes.Connects
+﻿namespace SyncFaturasSageEmail.Connects
 {
     class Connect
     {

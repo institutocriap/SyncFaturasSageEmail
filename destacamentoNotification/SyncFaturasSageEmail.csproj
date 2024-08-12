@@ -7,8 +7,8 @@
     <ProjectGuid>{21BB5EA6-0206-44A6-A63A-FC377F2B029C}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>notificacaoSemanalTestes</RootNamespace>
-    <AssemblyName>notificacaoSemanalTestes</AssemblyName>
+    <RootNamespace>SyncFaturasSageEmail</RootNamespace>
+    <AssemblyName>SyncFaturasSageEmail</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -52,7 +52,7 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>notificacaoSemanalTestes.Program</StartupObject>
+    <StartupObject>SyncFaturasSageEmail.Program</StartupObject>
   </PropertyGroup>
   <PropertyGroup>
     <ManifestCertificateThumbprint>40A83BDD8557832D1455E17EE4CBCD03210D7CEE</ManifestCertificateThumbprint>
@@ -72,9 +72,6 @@
     <NoWin32Manifest>true</NoWin32Manifest>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="BouncyCastle.Cryptography, Version=2.0.0.0, Culture=neutral, PublicKeyToken=072edcf4a5328938, processorArchitecture=MSIL">
-      <HintPath>..\packages\BouncyCastle.Cryptography.2.4.0\lib\net461\BouncyCastle.Cryptography.dll</HintPath>
-    </Reference>
     <Reference Include="criapLibrary">
       <HintPath>Libraries\criapLibrary.dll</HintPath>
     </Reference>

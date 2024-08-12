@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33424.131
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "notificacaoSemanalTestes", "destacamentoNotification\notificacaoSemanalTestes.csproj", "{21BB5EA6-0206-44A6-A63A-FC377F2B029C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SyncFaturasSageEmail", "destacamentoNotification\SyncFaturasSageEmail.csproj", "{21BB5EA6-0206-44A6-A63A-FC377F2B029C}"
 EndProject
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Setup", "Setup\Setup.vdproj", "{95C7C32B-564C-4041-B5CC-77036FFF6628}"
 EndProject

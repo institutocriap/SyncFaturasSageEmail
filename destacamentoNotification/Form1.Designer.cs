@@ -1,4 +1,4 @@
-﻿namespace notificacaoSemanalTestes
+﻿namespace SyncFaturasSageEmail
 {
     partial class Form1
     {
@@ -58,7 +58,7 @@
             this.MinimizeBox = false;
             this.Name = "Form1";
             this.ShowIcon = false;
-            this.Text = "notificacaoSemanalTestes";
+            this.Text = "SyncFaturasSageEmail";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
 

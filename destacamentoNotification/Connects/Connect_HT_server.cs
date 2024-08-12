@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Data.SqlClient;
 
-namespace notificacaoSemanalTestes.Connects
+namespace SyncFaturasSageEmail.Connects
 {
     class Connect_HT_server
     {
