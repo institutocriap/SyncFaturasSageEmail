@@ -21,120 +21,146 @@ namespace notificacaoSemanalTestes
 {
     public partial class Form1 : Form
     {
-        
-        public bool error = false;
+        public bool erro = false;
         public bool teste;
-        Version v = Assembly.GetExecutingAssembly().GetName().Version;
-        string controloVersao = "";
-       
+        Version versao = Assembly.GetExecutingAssembly().GetName().Version;
+        string controleVersao = "";
+
         public Form1()
         {
             teste = true;
+
             InitializeComponent();
             Security.remote();
-            controloVersao = @"<br><font size=""-2"">Controlo de versão: " + " V." + v.Major.ToString() + "." + v.Minor.ToString() + "." + v.Build.ToString() + " Assembly built date: " + System.IO.File.GetLastWriteTime(Assembly.GetExecutingAssembly().Location) + " by sa";
+            controleVersao = @"Controle de versão: " + " V." + versao.Major.ToString() + "." + versao.Minor.ToString() + "." + versao.Build.ToString() + " Data de compilação do assembly: " + System.IO.File.GetLastWriteTime(Assembly.GetExecutingAssembly().Location) + " por rc";
+            if (DateTime.Now.Hour == 22 && DateTime.Now.Minute <= 2)
+            {
+                EnviarRelatorioDiario();
+            }
         }
+
         private void Form1_Load(object sender, EventArgs e)
         {
-
-            using (var client = new ImapClient())
+            try
             {
-                // Conecte-se ao servidor IMAP
-                client.Connect("server.criap.com", 993, true);
-
-                // Autenticação
-                client.Authenticate("docs-noreply@criap.com", "cqt6Y7uV{&ra");
-
-                // Seleciona a caixa de entrada
-                var inbox = client.Inbox;
-                inbox.Open(MailKit.FolderAccess.ReadWrite);
-
-                // Buscar emails não lidos
-                var results = inbox.Search(SearchQuery.NotSeen);
-
-                foreach (var uid in results)
+                using (var cliente = new ImapClient())
                 {
-                    var message = inbox.GetMessage(uid);
+                    cliente.Connect("server.criap.com", 993, true);
+                    cliente.Authenticate("docs-noreply@criap.com", "cqt6Y7uV{&ra");
 
-                    if (message.Subject != null && message.Subject.Contains("FATURA"))
+                    var caixaEntrada = cliente.Inbox;
+                    caixaEntrada.Open(MailKit.FolderAccess.ReadWrite);
+                    var resultados = caixaEntrada.Search(SearchQuery.NotSeen);
+
+                    foreach (var uid in resultados)
                     {
-                        if (message.TextBody != null)
+                        var mensagem = caixaEntrada.GetMessage(uid);
+
+                        if (mensagem.Subject != null && mensagem.Subject.Contains("FATURA"))
                         {
-                            // Expressão regular para capturar o número após "Nº" e entre vírgulas
-                            var regex = new Regex(@", Nº (\d+),");
-                            var match = regex.Match(message.TextBody);
-
-                            if (match.Success)
+                            if (mensagem.TextBody != null)
                             {
-                                var numeroCapturado = match.Groups[1].Value;
+                                var regex = new Regex(@", Nº (\d+),");
+                                var match = regex.Match(mensagem.TextBody);
 
-                                foreach (var attachment in message.Attachments)
+                                if (match.Success)
                                 {
-                                    if (attachment is MimePart mimePart)
+                                    var numeroCapturado = match.Groups[1].Value;
+
+                                    foreach (var anexo in mensagem.Attachments)
                                     {
-                                        var originalFilename = mimePart.FileName;
-                                        var fileNameParts = originalFilename.Split('_');
-
-                                        if (fileNameParts.Length >= 3 && fileNameParts[3] == numeroCapturado)
+                                        if (anexo is MimePart mimePart)
                                         {
-                                            // Salva local
-                                            var filePath = Path.Combine(@"C:\Users\raphaelcastro\Downloads\", originalFilename);
-                                            
-                                            using (var stream = File.Create(filePath))
+                                            var nomeArquivoOriginal = mimePart.FileName;
+                                            var partesNomeArquivo = nomeArquivoOriginal.Split('_');
+
+                                            if (partesNomeArquivo.Length >= 3 && partesNomeArquivo[3] == numeroCapturado)
                                             {
-                                                mimePart.Content.DecodeTo(stream);
+                                                // Salva na base de dados
+                                                var nomeArquivoOriginalSplit = nomeArquivoOriginal.Split('.');
+                                                SalvaArquivoBasePA(mimePart, partesNomeArquivo, nomeArquivoOriginalSplit);
+                                                DataBaseLogSaveSecretaria(partesNomeArquivo, $"Arquivo {nomeArquivoOriginal} salvo com sucesso.");
                                             }
-
-                                            // Salva base de dados
-                                            SalvaArquivoBasePA(mimePart, originalFilename);
-
-                                            DataBaseLogSaveSecretaria(fileNameParts, $"Arquivo {originalFilename} salvo com sucesso.");
-                                        }
-                                        else
-                                        {
-                                            DataBaseLogSaveSecretaria(fileNameParts, $"Número no nome do arquivo ({fileNameParts[3]}) não corresponde ao número capturado ({numeroCapturado}).");
+                                            else
+                                            {
+                                                DataBaseLogSaveSecretaria(partesNomeArquivo, $"Número no nome do arquivo ({partesNomeArquivo[3]}) não corresponde ao número capturado ({numeroCapturado}).");
+                                            }
                                         }
                                     }
                                 }
                             }
                         }
+                        // Marca o email como lido
+                        caixaEntrada.AddFlags(uid, MessageFlags.Seen, true);
                     }
-
-                    // Marca o email como lido
-                    inbox.AddFlags(uid, MessageFlags.Seen, true);
+                    cliente.Disconnect(true);
                 }
-                client.Disconnect(true);
+            }
+            catch (Exception ex)
+            {
+                EnviarEmailErro(ex);
             }
         }
-        private void SalvaArquivoBasePA(MimePart mimePart, string nomeArquivoOriginal)
+
+        private void SalvaArquivoBasePA(MimePart mimePart, string[] partesNomeArquivo, string[] nomeArquivoOriginal)
         {
-            // Lê o conteúdo do arquivo diretamente do anexo
             using (var memoriaStream = new MemoryStream())
             {
                 mimePart.Content.DecodeTo(memoriaStream);
                 byte[] conteudoArquivo = memoriaStream.ToArray();
 
-                string query = @"INSERT INTO TBForDocFaturas (FileName, FileContent) 
-                         VALUES (@FileName, @FileContent)";
+                string selectQuery = @"SELECT ssCOUNT(*) FROM TBForDocFaturas WHERE nome_arquivo = @nome_arquivo";
 
-                Connect.portalAlunoConnect.ConnInit();
-                using (SqlCommand comando = new SqlCommand(query, Connect.portalAlunoConnect.Conn))
+                Connect.SVlocalConnect.ConnInit();
+                using (SqlCommand selectCommand = new SqlCommand(selectQuery, Connect.SVlocalConnect.Conn))
                 {
-                    comando.Parameters.Add("@FileName", SqlDbType.NVarChar).Value = nomeArquivoOriginal;
-                    comando.Parameters.Add("@FileContent", SqlDbType.VarBinary).Value = conteudoArquivo;
-                    comando.ExecuteNonQuery();
+                    selectCommand.Parameters.Add("@nome_arquivo", SqlDbType.NVarChar).Value = nomeArquivoOriginal[0];
+
+                    int count = (int)selectCommand.ExecuteScalar();
+
+                    string query;
+
+                    if (count > 0)
+                    {
+                        query = @"UPDATE TBForDocFaturas 
+                          SET ref_sage = @ref_sage, 
+                              arquivo = @arquivo, 
+                              extensao_arquivo = @extensao_arquivo, 
+                              versao_data = @versao_data, 
+                              versao_login = @versao_login
+                          WHERE nome_arquivo = @nome_arquivo";
+                    }
+                    else
+                    {
+                        query = @"INSERT INTO TBForDocFaturas (ref_sage, arquivo, nome_arquivo, extensao_arquivo, versao_data, versao_login)
+                          VALUES (
+                              @ref_sage, @arquivo, @nome_arquivo, @extensao_arquivo, @versao_data, @versao_login
+                          )";
+                    }
+
+                    using (SqlCommand comando = new SqlCommand(query, Connect.SVlocalConnect.Conn))
+                    {
+                        comando.Parameters.Add("@ref_sage", SqlDbType.NVarChar).Value = partesNomeArquivo[1] + " " + partesNomeArquivo[2] + "/" + partesNomeArquivo[3];
+                        comando.Parameters.Add("@arquivo", SqlDbType.VarBinary).Value = conteudoArquivo;
+                        comando.Parameters.Add("@nome_arquivo", SqlDbType.NVarChar).Value = nomeArquivoOriginal[0];
+                        comando.Parameters.Add("@extensao_arquivo", SqlDbType.NVarChar).Value = nomeArquivoOriginal[1];
+                        comando.Parameters.Add("@versao_data", SqlDbType.DateTime).Value = DateTime.Now;
+                        comando.Parameters.Add("@versao_login", SqlDbType.NVarChar).Value = "system_auto_email_docs_noreply";
+
+                        comando.ExecuteNonQuery();
+                    }
                 }
                 Connect.SVlocalConnect.ConnEnd();
                 Connect.closeAll();
             }
         }
 
-        public string[] getFormandoId(string num_doc_pag)
+        public string[] ObterFormandoId(string numDocPag)
         {
             string subQuery = $@"SELECT DISTINCT tf.Codigo_Formando, ta.Ref_Accao FROM TBForFormandos tf 
                         LEFT JOIN TBForFinOrdensFaturacaoPlano tp ON tp.Rowid_entidade = tf.versao_rowid 
                         LEFT JOIN TBForAccoes ta ON ta.versao_rowid = tp.Rowid_Opcao 
-                        WHERE tp.num_doc_pag='{num_doc_pag}'";
+                        WHERE tp.num_doc_pag='{numDocPag}'";
 
             Connect.SVlocalConnect.ConnInit();
             SqlDataAdapter adapter = new SqlDataAdapter(subQuery, Connect.HTlocalConnect.Conn);
@@ -153,19 +179,100 @@ namespace notificacaoSemanalTestes
             return new string[] { "0", "0" };
         }
 
-        private void DataBaseLogSaveSecretaria(string[] fileNameParts, string mensagem)
+        private void DataBaseLogSaveSecretaria(string[] partesNomeArquivo, string mensagem)
         {
-            // Busca o id formando
-            string[] resultado = getFormandoId(fileNameParts[1] + " " + fileNameParts[2] + "/" + fileNameParts[3]);
+            string[] resultado = ObterFormandoId(partesNomeArquivo[1] + " " + partesNomeArquivo[2] + "/" + partesNomeArquivo[3]);
             string codigoFormando = resultado[0];
             string acao = resultado[1];
-            string subQuery = $@"INSERT INTO sv_logs (idFormando, refAcao, dataregisto, registo, menu, username) VALUES ({resultado[0]}, '{resultado[1]}', GETDATE(), '{mensagem}', 'Faturas PA', 'system') ";
+            string subQuery = $@"INSERT INTO sv_logs (idFormando, refAcao, dataregisto, registo, menu, username) VALUES ({resultado[0]}, '{resultado[1]}', GETDATE(), '{mensagem}', 'Faturas PA', 'system_auto_email_docs_noreply') ";
 
             Connect.SVlocalConnect.ConnInit();
             SqlCommand cmd = new SqlCommand(subQuery, Connect.SVlocalConnect.Conn);
             cmd.ExecuteNonQuery();
             Connect.SVlocalConnect.ConnEnd();
             Connect.closeAll();
+        }
+
+        private string GerarRelatorioDiario()
+        {
+            StringBuilder relatorio = new StringBuilder();
+            relatorio.AppendLine("Relatório Diário de Arquivos Salvos");
+            relatorio.AppendLine("Data: " + DateTime.Now.ToString("dd/MM/yyyy"));
+            relatorio.AppendLine();
+            relatorio.AppendLine("ID do Arquivo | Referência Sage | Data");
+
+            string query = @"SELECT row_id, ref_sage, versao_data
+                            FROM TBForDocFaturas
+                            WHERE versao_data >= DATEADD(HOUR, 22, CAST(CONVERT(date, GETDATE() - 1) AS datetime))
+                            AND versao_data < DATEADD(HOUR, 22, CAST(CONVERT(date, GETDATE()) AS datetime))";
+
+            Connect.SVlocalConnect.ConnInit();
+            using (SqlCommand comando = new SqlCommand(query, Connect.SVlocalConnect.Conn))
+            using (SqlDataReader leitor = comando.ExecuteReader())
+            {
+                while (leitor.Read())
+                {
+                    string row_id = leitor["row_id"].ToString();
+                    string refSage = leitor["ref_sage"].ToString();
+                    string versao_data = leitor["versao_data"].ToString();
+                    relatorio.AppendLine($"{row_id} | {refSage} | {versao_data}");
+                }
+            }
+            Connect.SVlocalConnect.ConnEnd();
+            Connect.closeAll();
+
+            return relatorio.ToString();
+        }
+
+        private void EnviarRelatorioDiario()
+        {
+            string relatorio = GerarRelatorioDiario();
+            var fromAddress = new MailAddress(Properties.Settings.Default.emailenvio, "Instituto CRIAP");
+            var toAddress = new MailAddress("informatica@criap.com", "Equipe Técnica");
+            string subject = "Rotina Importar Faturas Email || Relatório Diário de Arquivos Salvos";
+            string body = $"Segue o relatório diário de arquivos salvos:\n\n{relatorio}\n\n{controleVersao}";
+
+            var smtp = new SmtpClient
+            {
+                Host = "mail.criap.com",
+                Port = 25,
+                DeliveryMethod = SmtpDeliveryMethod.Network,
+                Credentials = new NetworkCredential(Properties.Settings.Default.emailenvio, Properties.Settings.Default.passwordemail)
+            };
+
+            using (var mensagem = new MailMessage(fromAddress, toAddress)
+            {
+                Subject = subject,
+                Body = body
+            })
+            {
+                smtp.Send(mensagem);
+            }
+        }
+
+        private void EnviarEmailErro(Exception ex)
+        {
+            var fromAddress = new MailAddress(Properties.Settings.Default.emailenvio, "Instituto CRIAP");
+            var toAddress = new MailAddress("informatica@criap.com", "Equipe Técnica");
+            string subject = "Rotina Importar Faturas Email || Erro na Rotina";
+            string body = $"Ocorreu um erro na rotina de verificação de emails:\n\n{ex.Message}\n\n{ex.StackTrace}\n\n{controleVersao}";
+
+            var smtp = new SmtpClient
+            {
+                Host = "mail.criap.com",
+                Port = 25,
+                DeliveryMethod = SmtpDeliveryMethod.Network,
+                Credentials = new NetworkCredential(Properties.Settings.Default.emailenvio, Properties.Settings.Default.passwordemail)
+            };
+
+            using (var mensagem = new MailMessage(fromAddress, toAddress)
+            {
+                Subject = subject,
+                Body = body
+            })
+            {
+                smtp.Send(mensagem);
+            }
         }
 
     }
